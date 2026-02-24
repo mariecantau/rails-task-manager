@@ -1,0 +1,28 @@
+<h1><%= @task.title %></h1>
+
+<p><%= @task.details %></p>
+
+<p>
+  Status:
+  <% if @task.completed %>
+    Completed ✅
+  <% else %>
+    Not completed ❌
+  <% end %>
+</p>
+
+<!-- lien vers edit -->
+<%= link_to "Edit this task", edit_task_path(@task) %>
+
+<!-- lien vers delete -->
+<%= link_to "Delete this task",
+    task_path(@task),
+    data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
+
+<br><br>
+
+<!-- lien vers index -->
+<%= link_to "Back to list", tasks_path %>

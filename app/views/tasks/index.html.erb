@@ -1,0 +1,33 @@
+<h1>My tasks</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+
+      <!-- statut true/false -->
+      <% if task.completed %>
+      ✅
+      <% else %>
+      ⬜
+      <% end %>
+
+      <!-- lien vers show -->
+      <%= link_to task.title, task_path(task) %>
+
+      <!-- lien vers edit -->
+      <%= link_to "Edit", edit_task_path(task) %>
+
+      <!-- lien vers delete -->
+      <%= link_to "Delete",
+          task_path(task),
+          data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+          } %>
+
+    </li>
+  <% end %>
+</ul>
+
+<!-- lien vers new -->
+<%= link_to "Add a new task", new_task_path %>
